@@ -8,8 +8,8 @@ import { HttpClient } from "@angular/common/http";
 })
 export class FormComponent {
   constructor(private http: HttpClient) {}
+
   onSubmit(data) {
-    console.log(data);
     let payload = {
       accessCode: data.accessCode,
       firstName: data.firstName,
@@ -24,17 +24,28 @@ export class FormComponent {
         aboutMe: data.aboutMe,
       },
     };
-    this.http
-      .post("http://tgh-hewhiretest-api.azurewebsites.net/api/User", payload)
-      .subscribe((payload) => {
-        console.table(payload);
-      });
+    if (
+      confirm(
+        `Please confirm user submit with these changes ${JSON.stringify(
+          payload,
+          null,
+          2
+        )}`
+      )
+    ) {
+      this.http
+        .post("http://tgh-hewhiretest-api.azurewebsites.net/api/User", payload)
+        .subscribe((res: any) => {
+          alert("User Successfulyl created!");
+          console.log(res);
+          this.http
+            .delete(
+              `http://tgh-hewhiretest-api.azurewebsites.net/api/User/${res.payload.userID}/${res.payload.accessCode}`
+            )
+            .subscribe((res: any) => {
+              alert("User Successfully deleted!");
+            });
+        });
+    }
   }
-  // onDelete(data) {
-  //   this.http
-  //     .delete(`http://localhost:3000/users/${this.userId}`, data)
-  //     .subscribe((data) => {
-  //       console.table(data);
-  //     });
-  // }
 }

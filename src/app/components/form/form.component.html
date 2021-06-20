@@ -1,0 +1,265 @@
+<div class="container d-block d-lg-flex mx-lg-2 justify-content-center">
+  <form
+    class="
+      container
+      border border-4 border-primary
+      p-4
+      rounded-2
+      col-auto col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xxl-5
+      bg-light
+    "
+  >
+    <!-- Access Code Input -->
+    <div class="form-group mb-3">
+      <label for="accessCode">Access Code:</label>
+      <!-- Not only is the placeholder not accessible to screen readers, but once the user enters any text into the form control, or if the form control already has a value, the placeholder disappears. Browsers with automatic page translation features may skip over attributes when translating, meaning the placeholder may not get translated  -->
+      <!-- Alt text for blind people with screenreaders :) -->
+      <!-- Auto focus and title for accessiblity -->
+      <input
+        ngModel
+        required
+        name="accessCode"
+        id="accessCode"
+        type="text"
+        #accessCode="ngModel"
+        minlength="6"
+        maxlength="6"
+        pattern="[0-9]+"
+        class="form-control"
+        autofocus="true"
+        tabindex="0"
+        title="0-9 numbers only"
+        alt="This is an input for an Access Code"
+        (change)="log(accessCode)"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="accessCode.touched && !accessCode.valid"
+      >
+        <div *ngIf="accessCode.errors.required">
+          <strong>Access Code</strong> is a <em>required value</em>.
+        </div>
+        <div *ngIf="accessCode.errors.minlength">
+          <strong>Access Code</strong> should be
+          <em>
+            minimum
+            {{ accessCode.errors.minlength.requiredLength }} characters</em
+          >.
+        </div>
+        <div *ngIf="accessCode.errors.pattern">
+          <strong>Access Code</strong> should be a <em>valid input</em>.
+        </div>
+      </div>
+    </div>
+
+    <!-- First Name Input -->
+    <div class="form-group mb-3">
+      <label for="firstName">First Name:</label>
+      <input
+        ngModel
+        required
+        name="firstName"
+        id="firstName"
+        type="text"
+        #firstName="ngModel"
+        minlength="1"
+        maxlength="50"
+        pattern="[a-zA-z]+"
+        class="form-control"
+        autofocus="true"
+        tabindex="0"
+        title="a-z letters only"
+        alt="This is an input for First name"
+        (change)="log(accessCode)"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="firstName.touched && !firstName.valid"
+      >
+        <div *ngIf="firstName.errors.required">
+          <strong>First Name</strong> is a <em>required value</em>.
+        </div>
+        <div *ngIf="firstName.errors.minlength">
+          <strong>First Name</strong> should be
+          <em>
+            minimum
+            {{ firstName.errors.minlength.requiredLength }} characters</em
+          >.
+        </div>
+        <div *ngIf="firstName.errors.pattern">
+          <strong>First Name</strong> should be a <em>valid input</em>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Middle Initial Input -->
+    <div class="form-group mb-3">
+      <label for="middleInitial">Middle Initial:</label>
+      <input
+        ngModel
+        required
+        name="middleInitial"
+        id="middleInitial"
+        type="text"
+        #middleInitial="ngModel"
+        minlength="1"
+        maxlength="1"
+        pattern="[a-zA-z]+"
+        class="form-control"
+        autofocus="true"
+        tabindex="0"
+        title="a-z letters only"
+        alt="This is an input for Middle Initial"
+        (change)="log(accessCode)"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="middleInitial.touched && !middleInitial.valid"
+      >
+        <div *ngIf="middleInitial.errors.required">
+          <strong>Middle Initial</strong> is a <em>required value</em>.
+        </div>
+        <div *ngIf="middleInitial.errors.minlength">
+          <strong>Middle Initial</strong> should be
+          <em>
+            minimum
+            {{ middleInitial.errors.minlength.requiredLength }} characters</em
+          >.
+        </div>
+        <div *ngIf="middleInitial.errors.pattern">
+          <strong>Middle Initial</strong> should be a <em>valid input</em>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Last Name Input -->
+    <div class="form-group mb-3">
+      <label for="lastName">Last Name:</label>
+      <input
+        ngModel
+        required
+        name="lastName"
+        id="lastName"
+        type="text"
+        #lastName="ngModel"
+        minlength="1"
+        maxlength="50"
+        pattern="[a-zA-z]+"
+        class="form-control"
+        autofocus="true"
+        tabindex="0"
+        title="a-z letters only"
+        alt="This is an input for Last Name"
+        (change)="log(accessCode)"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="lastName.touched && !lastName.valid"
+      >
+        <div *ngIf="lastName.errors.required">
+          <strong>Last Name</strong> is a <em>required value</em>.
+        </div>
+        <div *ngIf="lastName.errors.minlength">
+          <strong>Last Name</strong> should be
+          <em>
+            minimum
+            {{ lastName.errors.minlength.requiredLength }} characters</em
+          >.
+        </div>
+        <div *ngIf="lastName.errors.pattern">
+          <strong>Last Name</strong> should be a <em>valid input</em>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Email Input -->
+    <div class="form-group mb-3">
+      <label for="email">Email:</label>
+      <input
+        ngModel
+        required
+        name="email"
+        id="email"
+        type="text"
+        #email="ngModel"
+        minlength="1"
+        maxlength="255"
+        pattern="^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$"
+        class="form-control"
+        autofocus="true"
+        tabindex="0"
+        title="a-z letters only"
+        alt="This is an input for Email"
+        (change)="log(accessCode)"
+      />
+      <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+        <div *ngIf="email.errors.required">
+          <strong>Email</strong> is a <em>required value</em>.
+        </div>
+        <div *ngIf="email.errors.minlength">
+          <strong>Email</strong> should be
+          <em>
+            minimum
+            {{ email.errors.minlength.requiredLength }} characters</em
+          >.
+        </div>
+        <div *ngIf="email.errors.pattern">
+          <strong>Email</strong> should be a <em>valid input</em>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Email Input -->
+    <div class="form-group mb-3">
+      <label for="email">Email:</label>
+      <input
+        ngModel
+        required
+        name="email"
+        id="email"
+        type="text"
+        #email="ngModel"
+        minlength="1"
+        maxlength="255"
+        pattern="^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$"
+        class="form-control"
+        autofocus="true"
+        tabindex="0"
+        title="a-z letters only"
+        alt="This is an input for Email"
+        (change)="log(accessCode)"
+      />
+      <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+        <div *ngIf="email.errors.required">
+          <strong>Email</strong> is a <em>required value</em>.
+        </div>
+        <div *ngIf="email.errors.minlength">
+          <strong>Email</strong> should be
+          <em>
+            minimum
+            {{ email.errors.minlength.requiredLength }} characters</em
+          >.
+        </div>
+        <div *ngIf="email.errors.pattern">
+          <strong>Email</strong> should be a <em>valid input</em>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div
+      class="
+        container
+        text-center
+        d-flex
+        align-items-center
+        justify-content-center
+      "
+    >
+      <button class="btn btn-primary" disabled *ngIf="!firstName.valid">
+        Submit
+      </button>
+      <button class="btn btn-primary" *ngIf="firstName.valid">Submit</button>
+    </div>
+  </form>
+</div>

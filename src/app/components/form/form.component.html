@@ -1,6 +1,8 @@
 <div class="container d-block d-lg-flex mx-lg-2 justify-content-center">
   <form
+    #userPost="ngForm"
     class="
+      mb-4
       container
       border border-4 border-primary
       p-4
@@ -8,13 +10,17 @@
       col-auto col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xxl-5
       bg-light
     "
+    (ngSubmit)="onSubmit(userPost.value)"
   >
+    <!-- Made all fields required for simplicity sake, can easily be switched by removal of required attribute in each input -->
+    <!-- Not only is the placeholder not accessible to screen readers, but once the user enters any text into the form control, or if the form control already has a value, the placeholder disappears. Browsers with automatic page translation features may skip over attributes when translating, meaning the placeholder may not get translated  -->
+    <!-- Alt text for blind people with screenreaders :) -->
+    <!-- Auto focus and title for accessiblity -->
+
     <!-- Access Code Input -->
     <div class="form-group mb-3">
       <label for="accessCode">Access Code:</label>
-      <!-- Not only is the placeholder not accessible to screen readers, but once the user enters any text into the form control, or if the form control already has a value, the placeholder disappears. Browsers with automatic page translation features may skip over attributes when translating, meaning the placeholder may not get translated  -->
-      <!-- Alt text for blind people with screenreaders :) -->
-      <!-- Auto focus and title for accessiblity -->
+
       <input
         ngModel
         required
@@ -30,24 +36,23 @@
         tabindex="0"
         title="0-9 numbers only"
         alt="This is an input for an Access Code"
-        (change)="log(accessCode)"
       />
       <div
         class="alert alert-danger"
         *ngIf="accessCode.touched && !accessCode.valid"
       >
         <div *ngIf="accessCode.errors.required">
-          <strong>Access Code</strong> is a <em>required value</em>.
+          <strong>Access Code</strong> is a <em>required value</em>
         </div>
         <div *ngIf="accessCode.errors.minlength">
           <strong>Access Code</strong> should be
           <em>
             minimum
             {{ accessCode.errors.minlength.requiredLength }} characters</em
-          >.
+          >
         </div>
         <div *ngIf="accessCode.errors.pattern">
-          <strong>Access Code</strong> should be a <em>valid input</em>.
+          <strong>Access Code</strong> should be a <em>valid input</em>
         </div>
       </div>
     </div>
@@ -66,28 +71,26 @@
         maxlength="50"
         pattern="[a-zA-z]+"
         class="form-control"
-        autofocus="true"
         tabindex="0"
         title="a-z letters only"
         alt="This is an input for First name"
-        (change)="log(accessCode)"
       />
       <div
         class="alert alert-danger"
         *ngIf="firstName.touched && !firstName.valid"
       >
         <div *ngIf="firstName.errors.required">
-          <strong>First Name</strong> is a <em>required value</em>.
+          <strong>First Name</strong> is a <em>required value</em>
         </div>
         <div *ngIf="firstName.errors.minlength">
           <strong>First Name</strong> should be
           <em>
             minimum
             {{ firstName.errors.minlength.requiredLength }} characters</em
-          >.
+          >
         </div>
         <div *ngIf="firstName.errors.pattern">
-          <strong>First Name</strong> should be a <em>valid input</em>.
+          <strong>First Name</strong> should be a <em>valid input</em>
         </div>
       </div>
     </div>
@@ -106,28 +109,26 @@
         maxlength="1"
         pattern="[a-zA-z]+"
         class="form-control"
-        autofocus="true"
         tabindex="0"
         title="a-z letters only"
         alt="This is an input for Middle Initial"
-        (change)="log(accessCode)"
       />
       <div
         class="alert alert-danger"
         *ngIf="middleInitial.touched && !middleInitial.valid"
       >
         <div *ngIf="middleInitial.errors.required">
-          <strong>Middle Initial</strong> is a <em>required value</em>.
+          <strong>Middle Initial</strong> is a <em>required value</em>
         </div>
         <div *ngIf="middleInitial.errors.minlength">
           <strong>Middle Initial</strong> should be
           <em>
             minimum
             {{ middleInitial.errors.minlength.requiredLength }} characters</em
-          >.
+          >
         </div>
         <div *ngIf="middleInitial.errors.pattern">
-          <strong>Middle Initial</strong> should be a <em>valid input</em>.
+          <strong>Middle Initial</strong> should be a <em>valid input</em>
         </div>
       </div>
     </div>
@@ -146,28 +147,26 @@
         maxlength="50"
         pattern="[a-zA-z]+"
         class="form-control"
-        autofocus="true"
         tabindex="0"
         title="a-z letters only"
         alt="This is an input for Last Name"
-        (change)="log(accessCode)"
       />
       <div
         class="alert alert-danger"
         *ngIf="lastName.touched && !lastName.valid"
       >
         <div *ngIf="lastName.errors.required">
-          <strong>Last Name</strong> is a <em>required value</em>.
+          <strong>Last Name</strong> is a <em>required value</em>
         </div>
         <div *ngIf="lastName.errors.minlength">
           <strong>Last Name</strong> should be
           <em>
             minimum
             {{ lastName.errors.minlength.requiredLength }} characters</em
-          >.
+          >
         </div>
         <div *ngIf="lastName.errors.pattern">
-          <strong>Last Name</strong> should be a <em>valid input</em>.
+          <strong>Last Name</strong> should be a <em>valid input</em>
         </div>
       </div>
     </div>
@@ -186,62 +185,231 @@
         maxlength="255"
         pattern="^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$"
         class="form-control"
-        autofocus="true"
         tabindex="0"
-        title="a-z letters only"
+        title="a-z & 0-9 letters and numbers only"
         alt="This is an input for Email"
-        (change)="log(accessCode)"
       />
       <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
         <div *ngIf="email.errors.required">
-          <strong>Email</strong> is a <em>required value</em>.
+          <strong>Email</strong> is a <em>required value</em>
         </div>
         <div *ngIf="email.errors.minlength">
           <strong>Email</strong> should be
           <em>
             minimum
             {{ email.errors.minlength.requiredLength }} characters</em
-          >.
+          >
         </div>
         <div *ngIf="email.errors.pattern">
-          <strong>Email</strong> should be a <em>valid input</em>.
+          <strong>Email</strong> should be a <em>valid input</em>
         </div>
       </div>
     </div>
 
-    <!-- Email Input -->
+    <!-- Phone Number Input -->
+    <!-- Regex Explanation
+        18005551234
+        1 800 555 1234
+        +1 800 555-1234
+        +86 800 555 1234
+        1-800-555-1234
+        1 (800) 555-1234
+        (800)555-1234
+        (800) 555-1234
+        (800)5551234
+        800-555-1234
+        800.555.1234
+        800 555 1234x5678
+        8005551234 x5678
+        1    800    555-1234
+        1----800----555-1234
+    -->
     <div class="form-group mb-3">
-      <label for="email">Email:</label>
+      <label for="phone">Phone Number:</label>
       <input
         ngModel
         required
-        name="email"
-        id="email"
+        name="phone"
+        id="phone"
         type="text"
-        #email="ngModel"
+        #phone="ngModel"
         minlength="1"
         maxlength="255"
-        pattern="^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$"
+        pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"
         class="form-control"
-        autofocus="true"
         tabindex="0"
-        title="a-z letters only"
-        alt="This is an input for Email"
-        (change)="log(accessCode)"
+        title="0-9 numbers and phone number specific text"
+        alt="This is an input for Phone Number"
       />
-      <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
-        <div *ngIf="email.errors.required">
-          <strong>Email</strong> is a <em>required value</em>.
+      <div class="alert alert-danger" *ngIf="phone.touched && !phone.valid">
+        <div *ngIf="phone.errors.required">
+          <strong>Phone Number</strong> is a <em>required value</em>
         </div>
-        <div *ngIf="email.errors.minlength">
-          <strong>Email</strong> should be
+        <div *ngIf="phone.errors.minlength">
+          <strong>Phone Number</strong> should be
           <em>
             minimum
-            {{ email.errors.minlength.requiredLength }} characters</em
-          >.
+            {{ phone.errors.minlength.requiredLength }} characters</em
+          >
         </div>
-        <div *ngIf="email.errors.pattern">
-          <strong>Email</strong> should be a <em>valid input</em>.
+        <div *ngIf="phone.errors.pattern">
+          <strong>Phone Number</strong> should be a <em>valid input</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Details Info -->
+    <h3 class="text-center mt-4 mb-4">User Details Section</h3>
+
+    <!-- Javascript Framework Input -->
+    <div class="form-group mb-3">
+      <label for="jsframework">Javascript Framework:</label>
+      <input
+        ngModel
+        required
+        name="jsframework"
+        id="jsframework"
+        type="text"
+        #jsFramework="ngModel"
+        minlength="1"
+        maxlength="255"
+        pattern="[a-zA-z0-9]+"
+        class="form-control"
+        tabindex="0"
+        title="a-z letters & numbers only"
+        alt="This is an input for Javascript Framework"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="jsFramework.touched && !jsFramework.valid"
+      >
+        <div *ngIf="jsFramework.errors.required">
+          <strong>Javascript Framework</strong> is a <em>required value</em>
+        </div>
+        <div *ngIf="jsFramework.errors.minlength">
+          <strong>Javascript Framework</strong> should be
+          <em>
+            minimum
+            {{ jsFramework.errors.minlength.requiredLength }} characters</em
+          >
+        </div>
+        <div *ngIf="jsFramework.errors.pattern">
+          <strong>Javascript Framework</strong> should be a
+          <em>valid input</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- Backend Framework Input -->
+    <div class="form-group mb-3">
+      <label for="backendFramework">Backend Framework:</label>
+      <input
+        ngModel
+        required
+        name="backendFramework"
+        id="backendFramework"
+        type="text"
+        #backendFramework="ngModel"
+        minlength="1"
+        maxlength="255"
+        pattern="[a-zA-z0-9]+"
+        class="form-control"
+        tabindex="0"
+        title="a-z letters & numbers only"
+        alt="This is an input for Backend Framework"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="backendFramework.touched && !backendFramework.valid"
+      >
+        <div *ngIf="backendFramework.errors.required">
+          <strong>Backend Framework</strong> is a <em>required value</em>
+        </div>
+        <div *ngIf="backendFramework.errors.minlength">
+          <strong>Backend Framework</strong> should be
+          <em>
+            minimum
+            {{ backendFramework.errors.minlength.requiredLength }}
+            characters</em
+          >
+        </div>
+        <div *ngIf="backendFramework.errors.pattern">
+          <strong>Backend Framework</strong> should be a <em>valid input</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- Database System Input -->
+    <div class="form-group mb-3">
+      <label for="databaseSystem">Database System:</label>
+      <input
+        ngModel
+        required
+        name="databaseSystem"
+        id="databaseSystem"
+        type="text"
+        #databaseSystem="ngModel"
+        minlength="1"
+        maxlength="255"
+        pattern="[a-zA-z0-9]+"
+        class="form-control"
+        tabindex="0"
+        title="a-z letters & numbers only"
+        alt="This is an input for Database System"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="databaseSystem.touched && !databaseSystem.valid"
+      >
+        <div *ngIf="databaseSystem.errors.required">
+          <strong>Database System</strong> is a <em>required value</em>
+        </div>
+        <div *ngIf="databaseSystem.errors.minlength">
+          <strong>Database System</strong> should be
+          <em>
+            minimum
+            {{ databaseSystem.errors.minlength.requiredLength }}
+            characters</em
+          >
+        </div>
+        <div *ngIf="databaseSystem.errors.pattern">
+          <strong>Database System</strong> should be a <em>valid input</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Me Input -->
+    <div class="form-group mb-3">
+      <label for="aboutMe">About Me:</label>
+      <textarea
+        ngModel
+        required
+        name="aboutMe"
+        id="aboutMe"
+        #aboutMe="ngModel"
+        minlength="1"
+        maxlength="4000"
+        pattern="^[a-zA-Z0-9?$@#()'!,+\-=_:.&€£*%\s]+$"
+        cols="30"
+        rows="10"
+        class="form-control"
+        tabindex="0"
+        alt="This is an input for About Me"
+      ></textarea>
+      <div class="alert alert-danger" *ngIf="aboutMe.touched && !aboutMe.valid">
+        <div *ngIf="aboutMe.errors.required">
+          <strong>About Me</strong> is a <em>required value</em>
+        </div>
+        <div *ngIf="aboutMe.errors.minlength">
+          <strong>About Me</strong> should be
+          <em>
+            minimum
+            {{ aboutMe.errors.minlength.requiredLength }}
+            characters</em
+          >
+        </div>
+        <div *ngIf="aboutMe.errors.pattern">
+          <strong>About Me</strong> should be a <em>valid input</em>
         </div>
       </div>
     </div>
@@ -256,10 +424,42 @@
         justify-content-center
       "
     >
-      <button class="btn btn-primary" disabled *ngIf="!firstName.valid">
+      <button
+        class="btn btn-primary"
+        disabled
+        *ngIf="
+          !firstName.valid ||
+          !accessCode.valid ||
+          !middleInitial.valid ||
+          !lastName.valid ||
+          !email.valid ||
+          !phone.valid ||
+          !jsFramework.valid ||
+          !backendFramework.valid ||
+          !databaseSystem.valid ||
+          !aboutMe.valid
+        "
+      >
         Submit
       </button>
-      <button class="btn btn-primary" *ngIf="firstName.valid">Submit</button>
+      <button
+        class="btn btn-primary"
+        type="submit"
+        *ngIf="
+          accessCode.valid &&
+          firstName.valid &&
+          middleInitial.valid &&
+          lastName.valid &&
+          email.valid &&
+          phone.valid &&
+          jsFramework.valid &&
+          backendFramework.valid &&
+          databaseSystem.valid &&
+          aboutMe.valid
+        "
+      >
+        Submit
+      </button>
     </div>
   </form>
 </div>

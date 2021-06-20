@@ -1,22 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-
-interface SearchResults {
-  accessCode: Number;
-  userId: Number;
-  firstName: String;
-  middleInitial: String;
-  lastName: String;
-  email: String;
-  phone: string;
-  userDetailInfo: {
-    userDetailID: Number;
-    userID: Number;
-    jsFramework: String;
-    backendFramework: String;
-    databaseSystem: String;
-    aboutMe: String;
-  };
-}
+import { Component } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-form",
@@ -24,7 +7,34 @@ interface SearchResults {
   styleUrls: ["./form.component.css"],
 })
 export class FormComponent {
-  log(x) {
-    console.log(x);
+  constructor(private http: HttpClient) {}
+  onSubmit(data) {
+    console.log(data);
+    let payload = {
+      accessCode: data.accessCode,
+      firstName: data.firstName,
+      middleInitial: data.middleInitial,
+      lastName: data.lastName,
+      Email: data.email,
+      Phone: data.phone,
+      userDetailInfo: {
+        jsFramework: data.jsFramework,
+        backendFramework: data.backendFramework,
+        databaseSystem: data.databaseSystem,
+        aboutMe: data.aboutMe,
+      },
+    };
+    this.http
+      .post("http://tgh-hewhiretest-api.azurewebsites.net/api/User", payload)
+      .subscribe((payload) => {
+        console.table(payload);
+      });
   }
+  // onDelete(data) {
+  //   this.http
+  //     .delete(`http://localhost:3000/users/${this.userId}`, data)
+  //     .subscribe((data) => {
+  //       console.table(data);
+  //     });
+  // }
 }

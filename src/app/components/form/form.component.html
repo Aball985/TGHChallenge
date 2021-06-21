@@ -14,7 +14,7 @@
   >
     <!-- Made all fields required for simplicity sake, can easily be switched by removal of required attribute in each input -->
     <!-- Not only is the placeholder not accessible to screen readers, but once the user enters any text into the form control, or if the form control already has a value, the placeholder disappears. Browsers with automatic page translation features may skip over attributes when translating, meaning the placeholder may not get translated  -->
-    <!-- Alt text for blind people with screenreaders :) -->
+    <!-- Alt and label text for blind people with screenreaders :) -->
     <!-- Auto focus and title for accessiblity -->
 
     <!-- Access Code Input -->
@@ -424,8 +424,10 @@
         justify-content-center
       "
     >
+      <!-- Button Show pre valid -->
       <button
         class="btn btn-primary"
+        type="button"
         disabled
         *ngIf="
           !firstName.valid ||
@@ -442,6 +444,7 @@
       >
         Submit
       </button>
+      <!-- Button show after valid -->
       <button
         class="btn btn-primary"
         type="submit"
@@ -457,9 +460,112 @@
           databaseSystem.valid &&
           aboutMe.valid
         "
+        (click)="open(content)"
       >
         Submit
       </button>
     </div>
   </form>
+
+  <!-- Modal -->
+  <ng-template #content let-modal style="overflow: hidden">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body d-flex gap-3 flex-column">
+      <h3 class="text-center m-0">User Create</h3>
+      <div class="container">
+        <div
+          class="
+            d-flex
+            flex-column
+            justify-content-center
+            align-items-center
+            gap-3
+          "
+        >
+          <label class="text-center" for="firstNameDisplay">
+            First Name:
+            <p class="mb-0 text-center" id="firstNameDisplay">
+              <strong>{{ firstName.value }}</strong>
+            </p>
+          </label>
+
+          <label class="text-center" for="middleInitialDisplay">
+            Middle Initial:
+            <p class="mb-0 text-center" id="middleInitialDisplay">
+              <strong>{{ middleInitial.value }}</strong>
+            </p>
+          </label>
+
+          <label class="text-center" for="lastNameDisplay">
+            Last Name:
+            <p class="mb-0 text-center" id="lastNameDisplay">
+              <strong>{{ lastName.value }}</strong>
+            </p>
+          </label>
+
+          <label class="text-center" for="emailDisplay">
+            Email:
+            <p class="mb-0 text-center" id="emailDisplay">
+              <strong>{{ email.value }}</strong>
+            </p>
+          </label>
+
+          <label class="text-center" for="phoneDisplay">
+            Phone Number:
+            <p class="mb-0 text-center" id="phoneDisplay">
+              <strong>{{ phone.value }}</strong>
+            </p>
+          </label>
+
+          <label class="text-center" for="jsFrameworkDisplay">
+            Javascript Framework:
+            <p class="mb-0 text-center" id="jsFrameworkDisplay">
+              <strong>{{ jsFramework.value }}</strong>
+            </p>
+          </label>
+
+          <label class="text-center" for="backendFrameworkDisplay">
+            Backend Framework:
+            <p class="mb-0 text-center" id="backendFrameworkDisplay">
+              <strong>{{ backendFramework.value }}</strong>
+            </p>
+          </label>
+
+          <label class="text-center" for="databaseSystemDisplay">
+            Database System:
+            <p class="mb-0 text-center" id="databaseSystemDisplay">
+              <strong>{{ databaseSystem.value }}</strong>
+            </p>
+          </label>
+
+          <label class="text-center d-flex flex-column" for="aboutMeDisplay">
+            About Me:
+            <p class="mb-0 text-centerthe" id="aboutMeDisplay">
+              <strong style="word-break: break-all">{{ aboutMe.value }}</strong>
+            </p>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="submit"
+        ngbAutofocus
+        class="btn btn-success"
+        (click)="modal.close('Ok click')"
+      >
+        Ok
+      </button>
+    </div>
+  </ng-template>
 </div>

@@ -2,13 +2,14 @@
   <!-- Form Begin -->
   <form
     #userPost="ngForm"
+    style="border-color: #f78f24 !important"
     class="
       mb-4
       container
-      border border-4 border-primary
+      border border-5
       p-4
       rounded-2
-      col-auto col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xxl-5
+      col-auto col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xxl-7
       bg-light
     "
     (ngSubmit)="onSubmit(userPost.value)"
@@ -427,7 +428,8 @@
     >
       <!-- Button Show pre valid -->
       <button
-        class="btn btn-primary"
+        style="background-color: #f78f24 !important"
+        class="btn btn-dark px-5"
         type="button"
         disabled
         *ngIf="
@@ -447,7 +449,8 @@
       </button>
       <!-- Button show after valid -->
       <button
-        class="btn btn-primary"
+        style="background-color: #f78f24 !important"
+        class="btn btn-dark px-5"
         type="submit"
         *ngIf="
           accessCode.valid &&

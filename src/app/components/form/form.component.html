@@ -20,7 +20,6 @@
     <!-- Access Code Input -->
     <div class="form-group mb-3">
       <label for="accessCode">Access Code:</label>
-
       <input
         ngModel
         required
@@ -48,8 +47,8 @@
           <strong>Access Code</strong> should be
           <em>
             minimum
-            {{ accessCode.errors.minlength.requiredLength }} characters</em
-          >
+            {{ accessCode.errors.minlength.requiredLength }} characters
+          </em>
         </div>
         <div *ngIf="accessCode.errors.pattern">
           <strong>Access Code</strong> should be a <em>valid input</em>
@@ -86,8 +85,8 @@
           <strong>First Name</strong> should be
           <em>
             minimum
-            {{ firstName.errors.minlength.requiredLength }} characters</em
-          >
+            {{ firstName.errors.minlength.requiredLength }} characters
+          </em>
         </div>
         <div *ngIf="firstName.errors.pattern">
           <strong>First Name</strong> should be a <em>valid input</em>
@@ -124,8 +123,8 @@
           <strong>Middle Initial</strong> should be
           <em>
             minimum
-            {{ middleInitial.errors.minlength.requiredLength }} characters</em
-          >
+            {{ middleInitial.errors.minlength.requiredLength }} characters
+          </em>
         </div>
         <div *ngIf="middleInitial.errors.pattern">
           <strong>Middle Initial</strong> should be a <em>valid input</em>
@@ -162,8 +161,8 @@
           <strong>Last Name</strong> should be
           <em>
             minimum
-            {{ lastName.errors.minlength.requiredLength }} characters</em
-          >
+            {{ lastName.errors.minlength.requiredLength }} characters
+          </em>
         </div>
         <div *ngIf="lastName.errors.pattern">
           <strong>Last Name</strong> should be a <em>valid input</em>
@@ -197,8 +196,8 @@
           <strong>Email</strong> should be
           <em>
             minimum
-            {{ email.errors.minlength.requiredLength }} characters</em
-          >
+            {{ email.errors.minlength.requiredLength }} characters
+          </em>
         </div>
         <div *ngIf="email.errors.pattern">
           <strong>Email</strong> should be a <em>valid input</em>
@@ -249,8 +248,8 @@
           <strong>Phone Number</strong> should be
           <em>
             minimum
-            {{ phone.errors.minlength.requiredLength }} characters</em
-          >
+            {{ phone.errors.minlength.requiredLength }} characters
+          </em>
         </div>
         <div *ngIf="phone.errors.pattern">
           <strong>Phone Number</strong> should be a <em>valid input</em>
@@ -290,8 +289,8 @@
           <strong>Javascript Framework</strong> should be
           <em>
             minimum
-            {{ jsFramework.errors.minlength.requiredLength }} characters</em
-          >
+            {{ jsFramework.errors.minlength.requiredLength }} characters
+          </em>
         </div>
         <div *ngIf="jsFramework.errors.pattern">
           <strong>Javascript Framework</strong> should be a
@@ -330,8 +329,8 @@
           <em>
             minimum
             {{ backendFramework.errors.minlength.requiredLength }}
-            characters</em
-          >
+            characters
+          </em>
         </div>
         <div *ngIf="backendFramework.errors.pattern">
           <strong>Backend Framework</strong> should be a <em>valid input</em>
@@ -369,8 +368,8 @@
           <em>
             minimum
             {{ databaseSystem.errors.minlength.requiredLength }}
-            characters</em
-          >
+            characters
+          </em>
         </div>
         <div *ngIf="databaseSystem.errors.pattern">
           <strong>Database System</strong> should be a <em>valid input</em>
@@ -395,7 +394,8 @@
         class="form-control"
         tabindex="0"
         alt="This is an input for About Me"
-      ></textarea>
+      >
+      </textarea>
       <div class="alert alert-danger" *ngIf="aboutMe.touched && !aboutMe.valid">
         <div *ngIf="aboutMe.errors.required">
           <strong>About Me</strong> is a <em>required value</em>
@@ -405,8 +405,8 @@
           <em>
             minimum
             {{ aboutMe.errors.minlength.requiredLength }}
-            characters</em
-          >
+            characters
+          </em>
         </div>
         <div *ngIf="aboutMe.errors.pattern">
           <strong>About Me</strong> should be a <em>valid input</em>
@@ -495,63 +495,81 @@
           <label class="text-center" for="firstNameDisplay">
             First Name:
             <p class="mb-0 text-center" id="firstNameDisplay">
-              <strong>{{ firstName.value }}</strong>
+              <strong style="word-break: break-all">
+                {{ firstName.value }}
+              </strong>
             </p>
           </label>
 
           <label class="text-center" for="middleInitialDisplay">
             Middle Initial:
             <p class="mb-0 text-center" id="middleInitialDisplay">
-              <strong>{{ middleInitial.value }}</strong>
+              <strong style="word-break: break-all">
+                {{ middleInitial.value }}
+              </strong>
             </p>
           </label>
 
           <label class="text-center" for="lastNameDisplay">
             Last Name:
             <p class="mb-0 text-center" id="lastNameDisplay">
-              <strong>{{ lastName.value }}</strong>
+              <strong style="word-break: break-all">
+                {{ lastName.value }}
+              </strong>
             </p>
           </label>
 
           <label class="text-center" for="emailDisplay">
             Email:
             <p class="mb-0 text-center" id="emailDisplay">
-              <strong>{{ email.value }}</strong>
+              <strong style="word-break: break-all">
+                {{ email.value }}
+              </strong>
             </p>
           </label>
 
           <label class="text-center" for="phoneDisplay">
             Phone Number:
             <p class="mb-0 text-center" id="phoneDisplay">
-              <strong>{{ phone.value }}</strong>
+              <strong style="word-break: break-all">
+                {{ phone.value }}
+              </strong>
             </p>
           </label>
 
           <label class="text-center" for="jsFrameworkDisplay">
             Javascript Framework:
             <p class="mb-0 text-center" id="jsFrameworkDisplay">
-              <strong>{{ jsFramework.value }}</strong>
+              <strong style="word-break: break-all">
+                {{ jsFramework.value }}
+              </strong>
             </p>
           </label>
 
           <label class="text-center" for="backendFrameworkDisplay">
             Backend Framework:
             <p class="mb-0 text-center" id="backendFrameworkDisplay">
-              <strong>{{ backendFramework.value }}</strong>
+              <strong style="word-break: break-all">
+                {{ backendFramework.value }}
+              </strong>
             </p>
           </label>
 
           <label class="text-center" for="databaseSystemDisplay">
             Database System:
             <p class="mb-0 text-center" id="databaseSystemDisplay">
-              <strong>{{ databaseSystem.value }}</strong>
+              <strong style="word-break: break-all">
+                {{ databaseSystem.value }}
+              </strong>
             </p>
           </label>
 
           <label class="text-center d-flex flex-column" for="aboutMeDisplay">
             About Me:
             <p class="mb-0 text-centerthe" id="aboutMeDisplay">
-              <strong style="word-break: break-all">{{ aboutMe.value }}</strong>
+              <strong style="word-break: break-all">
+                {{ aboutMe.value }}
+              </strong>
             </p>
           </label>
         </div>

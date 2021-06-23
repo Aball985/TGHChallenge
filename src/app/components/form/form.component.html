@@ -4,6 +4,9 @@
     #userPost="ngForm"
     style="border-color: #f78f24 !important"
     class="
+      d-flex
+      flex-column
+      justify-content-center
       mb-4
       container
       border border-5
@@ -19,6 +22,18 @@
     <!-- Alt and label text for blind people with screenreaders :) -->
     <!-- Auto focus and title for accessiblity -->
 
+    <span
+      *ngIf="sendResult === false"
+      class="text-center p-1 text-danger text-uppercase"
+    >
+      User not created!
+    </span>
+    <span
+      *ngIf="sendResult === true"
+      class="text-center p-1 text-success text-uppercase"
+    >
+      User created and deleted!
+    </span>
     <!-- Access Code Input -->
     <div class="form-group mb-3">
       <label for="accessCode">Access Code:</label>

@@ -8,8 +8,10 @@ import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 })
 export class FormComponent {
   constructor(private http: HttpClient, private modalService: NgbModal) {}
-  closeResult = "";
+  closeResult: String = "";
+  sendResult: Boolean;
 
+  //Modal open close
   open(content) {
     this.modalService
       .open(content, { ariaLabelledBy: "modal-basic-title" })
@@ -23,6 +25,7 @@ export class FormComponent {
       );
   }
 
+  //Handle modal close once opened
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return "by pressing ESC";
@@ -32,6 +35,8 @@ export class FormComponent {
       return `with: ${reason}`;
     }
   }
+
+  //On data sent handler
   onSubmit(data) {
     let payload = {
       accessCode: data.accessCode,
@@ -59,7 +64,8 @@ export class FormComponent {
       this.http
         .post("http://tgh-hewhiretest-api.azurewebsites.net/api/User", payload)
         .subscribe((res: any) => {
-          alert("User Successfulyl created!");
+          this.sendResult = true;
+          alert("User Successfully created!");
           console.log(res);
           this.http
             .delete(
@@ -69,6 +75,8 @@ export class FormComponent {
               alert("User Successfully deleted!");
             });
         });
+    } else {
+      this.sendResult = false;
     }
   }
 }
